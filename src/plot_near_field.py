@@ -12,23 +12,29 @@ os.makedirs(RESULTS_DIR, exist_ok=True)
 RADIUS_NM = 87.5  # 175 nm diameter Cu2O sphere, matches SI Figure S5a/b
 D_SPHERE_NM = 2 * RADIUS_NM
 
-# Both H2 and E2 use the "xy" plane (miepython frame, z=0 -- the plane
-# transverse to the propagation axis). This was settled empirically, not
-# assumed: an earlier version used "yz" for H2, which produced a peak
-# (37.49) far above the SI's reported ~25 and a dark interference "null"
-# spot not present in Figure S5a. Switching H2 to "xy" gave 29.21 (much
-# closer to ~25) and the null spot vanished -- consistent with "yz"
-# containing the propagation axis and picking up standing-wave fringing
-# that a purely transverse cut doesn't show. A parallel hypothesis that
-# E2 should move to "xz" was tested and rejected: it made the match
-# worse (12.96 vs the SI's ~8, compared to "xy"'s 10.94). See
-# results/*_kplane_reference.png and results/*_kEplane_check.png for the
-# rejected alternatives kept as a record of that investigation.
+# H2 uses "xy" (miepython frame, z=0) and E2 uses "xz" (miepython frame,
+# y=0) -- these are DIFFERENT planes, deliberately, matching the SI's
+# own convention of plotting H2 in its "YZ" plane and E2 in its "XY"
+# plane (a different physical cut for each field). The correspondence
+# was derived from the SI's stated FDTD axes (k||x, E||y, H||z) mapped
+# role-by-role onto miepython's internal convention (k||z, E||x, H||y):
+#   paper's YZ (spans E,H)   -> miepython's xy plane -> H2
+#   paper's XY (spans k,E)   -> miepython's xz plane -> E2
+#
+# Known open issue: on this plane, E2 peaks at ~12.96 vs an SI colorbar
+# reading of ~8 (an earlier version used "xy" for E2 too, which gave
+# 10.94 -- numerically closer, but on the WRONG plane per the derivation
+# above). Keeping "xz" here because the plane correspondence is exact
+# algebra, while the ~8 is a value read off a printed colorbar by eye,
+# which is a much softer number. The remaining gap could be colorbar
+# misreading, or a real difference between analytic Mie near-field and
+# full FDTD (mesh/PML effects) -- not yet resolved, flagged honestly
+# rather than tuned away.
 CASES = [
     ("H2_resonance_542nm",    542.0, "xy", "H"),
     ("H2_offresonance_650nm", 650.0, "xy", "H"),
-    ("E2_resonance_542nm",    542.0, "xy", "E"),
-    ("E2_offresonance_650nm", 650.0, "xy", "E"),
+    ("E2_resonance_542nm",    542.0, "xz", "E"),
+    ("E2_offresonance_650nm", 650.0, "xz", "E"),
 ]
 
 for name, wavelength, plane, field in CASES:
