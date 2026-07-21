@@ -1,0 +1,10 @@
+category,test,real,predicted,diff,status,source
+Mie theory sanity check,"Where electric and magnetic scattering are equal (lossless test sphere, not real Cu2O)",1548 nm,1540 nm,-0.5%,Validated,"SI Figure S7 (Mohammadparast et al., 2020)"
+Near-field brightness,"Magnetic field hotspot strength at resonance, 175nm Cu2O sphere",~25x,29.2x,+17%,Validated (right shape and order of magnitude),"SI Figure S5a (Mohammadparast et al., 2020)"
+Near-field brightness,"Electric field hotspot strength at resonance, 175nm Cu2O sphere",~8x,13.0x,+62%,"Approximate (correct shape, magnitude off)","SI Figure S5b (Mohammadparast et al., 2020)"
+Size-dependent scattering,"Scattering brightness peak, 300nm diameter sphere",~3.7 (x1e-13 m2),3.75 (x1e-13 m2),+1%,Validated,"SI Figure S3b (Mohammadparast et al., 2020)"
+Size-dependent scattering,"Scattering brightness peak, 350nm diameter sphere",~5.3 (x1e-13 m2),5.25 (x1e-13 m2),-1%,Validated,"SI Figure S3b (Mohammadparast et al., 2020)"
+Size-dependent scattering,"Scattering brightness peak, 400nm diameter sphere",~7.2 (x1e-13 m2),7.09 (x1e-13 m2),-2%,Validated,"SI Figure S3b (Mohammadparast et al., 2020)"
+"Catalytic rate (particle size, green light)",How much faster the reaction runs on 145nm vs. 42nm spheres,9.6x (+/- 1.6x),8.2x,-15% (within real measurement uncertainty),Validated,"Addanki Tirumala et al., ACS Catalysis 2022"
+"Catalytic rate (particle size, red light)",How much faster a different reaction runs on 145nm vs. 37nm spheres,2.6x (+/- 0.4x),12.2x,Far outside real range,Documented limitation (different reaction mechanism; not tuned away),"Addanki Tirumala et al., ACS Appl. Nano Mater. 2022"
+Catalytic rate (light intensity),"How reaction rate scales with light brightness, fixed 1300nm particles",5 measured points,Fit R2 = 0.999,N/A,Validated,"Addanki Tirumala et al., ACS Sustainable Chem. Eng. 2023"
